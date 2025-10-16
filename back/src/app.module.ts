@@ -7,6 +7,7 @@ import { TatuBotName } from './constants/app.constants';
 import { sessionMiddleware } from './middleware/session.middleware';
 import { AuthModule } from './auth/auth.module';
 import { BookingModule } from './booking/booking.module';
+import { PortfolioModule } from './portfolio/portfolio.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { BookingModule } from './booking/booking.module';
     }),
     AuthModule,
     BookingModule,
+    PortfolioModule,
     // GreeterModule,
   ],
   controllers: [AppController],

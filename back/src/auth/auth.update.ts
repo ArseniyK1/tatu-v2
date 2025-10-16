@@ -12,6 +12,7 @@ import {
 } from 'nestjs-telegraf';
 import { Telegraf, Markup } from 'telegraf';
 import { AuthService } from './auth.service';
+import { PortfolioService } from '../portfolio/portfolio.service';
 import { TatuBotName } from '../constants/app.constants';
 import { Context } from '../interfaces/context.interface';
 import { ReverseTextPipe } from '../common/pipes/reverse-text.pipes';
@@ -28,6 +29,7 @@ export class AuthUpdate {
     @InjectBot(TatuBotName)
     private readonly bot: Telegraf<Context>,
     private readonly authService: AuthService,
+    private readonly portfolioService: PortfolioService,
   ) {}
 
   @Start()
@@ -55,7 +57,7 @@ export class AuthUpdate {
       // Игнорируем ошибки удаления
     }
 
-    const message = this.authService.getPortfolioMessage();
+    const message = this.portfolioService.getPortfolioMessage();
     const keyboard = Markup.inlineKeyboard([
       [Markup.button.callback('На главную', 'main_menu')],
     ]);
