@@ -6,6 +6,7 @@ import { TelegrafModule } from 'nestjs-telegraf';
 import { GreeterBotName } from './app.constants';
 import { sessionMiddleware } from './middleware/session.middleware';
 import { AuthModule } from './auth/auth.module';
+import { BookingModule } from './booking/booking.module';
 import { GreeterModule } from './greeter/greeter.module';
 
 @Module({
@@ -25,8 +26,9 @@ import { GreeterModule } from './greeter/greeter.module';
         include: [],
       }),
     }),
-    // AuthModule,
-    GreeterModule,
+    AuthModule,
+    BookingModule,
+    // GreeterModule,
   ],
   controllers: [AppController],
   providers: [AppService],
