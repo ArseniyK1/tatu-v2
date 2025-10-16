@@ -1,4 +1,11 @@
 import { Scenes } from 'telegraf';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-export interface Context extends Scenes.SceneContext {}
+export interface BookingSessionData {
+  consentGiven?: boolean;
+}
+
+export interface Context extends Scenes.SceneContext {
+  scene: Scenes.SceneContext['scene'] & {
+    session: BookingSessionData;
+  };
+}

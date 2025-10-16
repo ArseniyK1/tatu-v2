@@ -2,7 +2,11 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AuthService {
-  auth(text: string): string {
-    return `Auth: ${text}`;
+  getMainMenuMessage(): string {
+    return 'Привет! Меня зовут Дарья и я тату-мастер! Жду твою запись)';
+  }
+
+  getPortfolioMessage(): string {
+    return 'Мое портфолио скоро будет доступно! 🎨';
   }
 }
