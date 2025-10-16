@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { BOOKING_WELCOME_MESSAGE } from './static/texts';
 
 interface UserData {
   id: number;
@@ -13,7 +14,7 @@ export class BookingService {
   private users: UserData[] = [];
 
   getBookingWelcomeMessage(): string {
-    return 'Я так рада, что ты решил(а) записаться ко мне на сеанс тату! Пожалуйста, предоставь свои данные (Я узнаю только твое имя в ТГ и ID) чтобы я могла одобрить запись!';
+    return BOOKING_WELCOME_MESSAGE;
   }
 
   registerUser(

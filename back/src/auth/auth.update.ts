@@ -12,20 +12,20 @@ import {
 } from 'nestjs-telegraf';
 import { Telegraf, Markup } from 'telegraf';
 import { AuthService } from './auth.service';
-import { GreeterBotName } from '../app.constants';
+import { TatuBotName } from '../constants/app.constants';
 import { Context } from '../interfaces/context.interface';
 import { ReverseTextPipe } from '../common/pipes/reverse-text.pipes';
 import { ResponseTimeInterceptor } from '../common/interceptors/response-time.interceptor';
 import { AdminGuard } from '../common/guards/admin.guard';
 import { TelegrafExceptionFilter } from '../common/filters/telegraf-exception.filter';
-import { BOOKING_SCENE_ID } from '../app.constants';
+import { BOOKING_SCENE_ID } from '../constants/app.constants';
 
 @Update()
 @UseInterceptors(ResponseTimeInterceptor)
 @UseFilters(TelegrafExceptionFilter)
 export class AuthUpdate {
   constructor(
-    @InjectBot(GreeterBotName)
+    @InjectBot(TatuBotName)
     private readonly bot: Telegraf<Context>,
     private readonly authService: AuthService,
   ) {}

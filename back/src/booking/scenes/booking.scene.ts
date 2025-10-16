@@ -9,7 +9,7 @@ import {
 } from 'nestjs-telegraf';
 import { Markup } from 'telegraf';
 import { BookingService } from '../booking.service';
-import { BOOKING_SCENE_ID } from '../../app.constants';
+import { BOOKING_SCENE_ID } from '../../constants/app.constants';
 import { Context } from '../../interfaces/context.interface';
 
 @Scene(BOOKING_SCENE_ID)
@@ -30,6 +30,7 @@ export class BookingScene {
     const message = this.bookingService.getBookingWelcomeMessage();
     const keyboard = Markup.inlineKeyboard([
       [Markup.button.callback('Я согласен', 'consent_given')],
+      [Markup.button.callback('На главную', 'main_menu')],
     ]);
 
     await ctx.reply(message, keyboard);

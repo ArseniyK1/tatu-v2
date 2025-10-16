@@ -1,5 +1,5 @@
 import { Scene, SceneEnter, SceneLeave, Command } from 'nestjs-telegraf';
-import { HELLO_SCENE_ID } from '../../app.constants';
+import { HELLO_SCENE_ID } from '../../constants/app.constants';
 import { Context } from '../../interfaces/context.interface';
 
 @Scene(HELLO_SCENE_ID)

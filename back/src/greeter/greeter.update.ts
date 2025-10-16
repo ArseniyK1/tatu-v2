@@ -1,7 +1,7 @@
 import { Command, Ctx, Hears, Start, Update, Sender } from 'nestjs-telegraf';
 import { UpdateType as TelegrafUpdateType } from 'telegraf/typings/telegram-types';
 import { Context } from '../interfaces/context.interface';
-import { HELLO_SCENE_ID, WIZARD_SCENE_ID } from '../app.constants';
+import { HELLO_SCENE_ID, WIZARD_SCENE_ID } from '../constants/app.constants';
 import { UpdateType } from '../common/decorators/update-type.decorator';
 import { PrismaService } from 'src/prisma.service';
 
