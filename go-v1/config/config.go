@@ -10,6 +10,7 @@ import (
 type (
 	Config struct {
 		App     App
+		Http    Http
 		DB      DB
 		Minio   Minio
 		Tg      Tg
@@ -18,7 +19,13 @@ type (
 	}
 
 	App struct {
-		Port string `env:"APP_PORT"`
+		Name    string `env:"APP_NAME,required"`
+		Version string `env:"APP_VERSION,required"`
+	}
+
+	Http struct {
+		Port           string `env:"HTTP_PORT"`
+		UsePreforkMode bool   `env:"HTTP_USE_PREFORK_MODE" envDefault:"false"`
 	}
 
 	DB struct {
