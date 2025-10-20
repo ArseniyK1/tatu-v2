@@ -38,6 +38,16 @@ func NewRouter(app *fiber.App, cfg *config.Config, t usecase.Translation, l logg
 	// K8s probe
 	app.Get("/healthz", func(ctx *fiber.Ctx) error { return ctx.SendStatus(http.StatusOK) })
 
+	app.Get("/pg-history", func(ctx *fiber.Ctx) error {
+		val, err := t.History(ctx.Context())
+
+		if err != nil {
+			return ctx.Status(500).JSON(fiber.Map{"error": err.Error()})
+		}
+
+		return ctx.JSON(val)
+	})
+
 	// Routers
 	apiV1Group := app.Group("/v1")
 	{

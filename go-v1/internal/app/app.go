@@ -54,6 +54,4 @@ func Run(cfg *config.Config) {
 	if err != nil {
 		log.Error(fmt.Errorf("app - Run - httpServer.Shutdown: %w", err))
 	}
-
-	log.Info("App started")
 }
