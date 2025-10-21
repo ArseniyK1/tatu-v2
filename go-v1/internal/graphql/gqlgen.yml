@@ -1,0 +1,31 @@
+# Конфигурация для gqlgen - генератора GraphQL кода
+# Этот файл говорит gqlgen как генерировать код
+
+# Путь к схеме GraphQL
+schema:
+  - schema.graphql
+
+# Где генерировать код
+exec:
+  # Файл с резолверами (функции, которые обрабатывают запросы)
+  filename: generated/schema.go
+  # Пакет для сгенерированного кода
+  package: generated
+
+# Где генерировать модели
+model:
+  # Папка для моделей
+  filename: generated/models_gen.go
+  # Пакет для моделей
+  package: generated
+
+# Настройки для резолверов
+resolver:
+  # Папка для резолверов
+  layout: follow-schema
+  # Имя файла для резолверов
+  dir: generated
+  # Пакет для резолверов
+  package: generated
+  # Тип для контекста (используем стандартный context.Context)
+  type: Resolver

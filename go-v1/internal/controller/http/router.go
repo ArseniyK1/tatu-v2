@@ -5,6 +5,7 @@ import (
 	"tatu/config"
 	"tatu/internal/controller/http/middleware"
 	v1 "tatu/internal/controller/http/v1"
+	"tatu/internal/graphql"
 	"tatu/internal/usecase"
 	"tatu/pkg/logger"
 
@@ -38,6 +39,22 @@ func NewRouter(app *fiber.App, cfg *config.Config, t usecase.Translation, l logg
 	// K8s probe
 	app.Get("/healthz", func(ctx *fiber.Ctx) error { return ctx.SendStatus(http.StatusOK) })
 
+	// GraphQL настройка с использованием библиотек
+	// Создаем GraphQL хендлер с использованием graphql-go библиотеки
+	graphqlHandler, err := graphql.NewGraphQLHandlerV2(t)
+	if err != nil {
+		l.Fatal("Failed to create GraphQL handler: %v", err)
+	}
+
+	// GraphQL endpoint - здесь будут обрабатываться все GraphQL запросы
+	// POST /graphql - основной endpoint для GraphQL запросов
+	app.Post("/graphql", graphqlHandler.GraphQLHandler())
+
+	// GraphQL Playground - веб-интерфейс для тестирования GraphQL
+	// GET /playground - откроет интерактивную среду для тестирования
+	app.Get("/playground", graphqlHandler.PlaygroundHandler())
+
+	// Старый REST endpoint (оставляем для совместимости)
 	app.Get("/pg-history", func(ctx *fiber.Ctx) error {
 		val, err := t.History(ctx.Context())
 
@@ -48,7 +65,7 @@ func NewRouter(app *fiber.App, cfg *config.Config, t usecase.Translation, l logg
 		return ctx.JSON(val)
 	})
 
-	// Routers
+	// REST API v1 роуты (оставляем для совместимости)
 	apiV1Group := app.Group("/v1")
 	{
 		v1.NewTranslationRoutes(apiV1Group, t, l)

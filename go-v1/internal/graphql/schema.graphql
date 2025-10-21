@@ -1,0 +1,18 @@
+type Translation {
+  source: String!
+  destination: String!
+  original: String!
+  translation: String!
+}
+
+type TranslationHistory {
+  history: [Translation!]!
+}
+
+type Query {
+  translationHistory: TranslationHistory!
+}
+
+type Mutation {
+  translate(source: String!, destination: String!, text: String!): Translation!
+}

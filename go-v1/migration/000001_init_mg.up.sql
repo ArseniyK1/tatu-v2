@@ -11,14 +11,12 @@ CREATE TABLE IF NOT EXISTS users (
     description TEXT NOT NULL,
     icon VARCHAR(256),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
 ) CREATE TABLE IF NOT EXISTS services (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     description TEXT NOT NULL,
     icon VARCHAR(256),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
 ) CREATE TABLE IF NOT EXISTS portfolio (
     id SERIAL PRIMARY KEY,
     title TEXT NOT NULL,
@@ -26,7 +24,6 @@ CREATE TABLE IF NOT EXISTS users (
     image VARCHAR(256),
     link VARCHAR(256),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
     service_id BIGINT NOT NULL,
     FOREIGN KEY (service_id) REFERENCES services(id),
 ) CREATE TABLE IF NOT EXISTS portfolio_items (
@@ -35,7 +32,6 @@ CREATE TABLE IF NOT EXISTS users (
     category_id BIGINT NOT NULL,
     image VARCHAR(256),
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP,
     FOREIGN KEY (category_id) REFERENCES categories(id),
     FOREIGN KEY (portfolio_id) REFERENCES portfolio(id),
 )
